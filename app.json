@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Filadelfia_1742",
-    "slug": "Filadelfia_1742",
+    "name": "Confesión B. de Fe Filadelfia 1742",
+    "slug": "filadelfia_1742",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
