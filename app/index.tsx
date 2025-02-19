@@ -61,43 +61,6 @@ const chapters: Chapter[] = [
   },
 ];
 
-function ChapterDetailScreen({ route, navigation }: { route: any, navigation: any }) {
-  const { chapter } = route.params;
-
-  return (
-    <SafeAreaView style={styles.detailContainer}>
-      <ScrollView>
-        <LinearGradient
-          colors={['#1a237e', '#283593']}
-          style={styles.detailHeader}
-        >
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navigation.goBack()}
-          >
-            <Ionicons name="arrow-back" size={24} color="#fff" />
-          </TouchableOpacity>
-          <View style={styles.detailHeaderContent}>
-            <Text style={styles.detailChapterNumber}>Capítulo {chapter.id}</Text>
-            <Text style={styles.detailTitle}>{chapter.title}</Text>
-          </View>
-        </LinearGradient>
-
-        <View style={styles.contentContainer}>
-          <Text style={styles.contentText}>{chapter.content}</Text>
-          
-          <View style={styles.versesContainer}>
-            <Text style={styles.versesTitle}>Referencias Bíblicas:</Text>
-            {chapter.verses.map((verse: string, index: number) => (
-              <Text key={index} style={styles.verseText}>• {verse}</Text>
-            ))}
-          </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
 export default function Index() {
   return (
     <ScrollView style={styles.container}>
@@ -114,7 +77,10 @@ export default function Index() {
           <TouchableOpacity
             key={chapter.id}
             style={styles.chapterCard}
-            onPress={() => router.push(`/chapter/${chapter.id}` as any)}
+            onPress={() => router.push({
+              pathname: '/chapter/[id]',
+              params: { id: chapter.id }
+            })}
           >
             <LinearGradient
               colors={['#ffffff', '#f5f5f5']}
