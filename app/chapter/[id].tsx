@@ -7,6 +7,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Dimensions,
+  StatusBar,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -34,7 +35,7 @@ export default function ChapterDetail() {
     <SafeAreaView style={styles.detailContainer}>
       <ScrollView>
         <LinearGradient
-          colors={["#1a237e", "#283593"]}
+          colors={COLORS.gradient.primary}
           style={styles.detailHeader}
         >
           <TouchableOpacity
@@ -141,15 +142,15 @@ const styles = StyleSheet.create({
   },
   detailContainer: {
     flex: 1,
-    backgroundColor: COLORS.backgroundLight,
+    backgroundColor: COLORS.background,
   },
   detailHeader: {
     padding: 20,
-    paddingTop: 40,
+    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 40,
   },
   backButton: {
     position: "absolute",
-    top: 40,
+    top: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 40,
     left: 16,
     zIndex: 1,
     padding: 8,
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 20,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.backgroundLight,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     marginTop: -20,

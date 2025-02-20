@@ -7,6 +7,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -59,11 +60,11 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: COLORS.backgroundLight,
   },
   header: {
     padding: 20,
-    paddingTop: 40,
+    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 40,
     alignItems: 'center',
   },
   headerTitle: {
@@ -86,6 +87,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     ...SHADOWS.light,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: COLORS.primary + '20',
   },
   cardGradient: {
     padding: 16,
