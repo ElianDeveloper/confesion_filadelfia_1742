@@ -3,40 +3,77 @@ import { Chapter } from "@/types";
 export const chapters: Chapter[] = [
   {
     id: 1,
-    title: "De las Sagradas Escrituras",
-    content:
-      "Las Sagradas Escrituras son la única, suficiente, cierta y infalible regla de todo conocimiento, fe y obediencia salvadores. La luz de la naturaleza y las obras de creación y providencia manifiestan la bondad, sabiduría y poder de Dios de tal manera que dejan a los hombres sin excusa; sin embargo, no son suficientes para dar aquel conocimiento de Dios y de su voluntad que es necesario para la salvación... Las Sagradas Escrituras son la única, suficiente, cierta y infalible regla de todo conocimiento, fe y obediencia salvadores. La luz de la naturaleza y las obras de creación y providencia manifiestan la bondad, sabiduría y poder de Dios de tal manera que dejan a los hombres sin excusa; sin embargo, no son suficientes para dar aquel conocimiento de Dios y de su voluntad que es necesario para la salvación... Las Sagradas Escrituras son la única, suficiente, cierta y infalible regla de todo conocimiento, fe y obediencia salvadores. La luz de la naturaleza y las obras de creación y providencia manifiestan la bondad, sabiduría y poder de Dios de tal manera que dejan a los hombres sin excusa; sin embargo, no son suficientes para dar aquel conocimiento de Dios y de su voluntad que es necesario para la salvación... Las Sagradas Escrituras son la única, suficiente, cierta y infalible regla de todo conocimiento, fe y obediencia salvadores. La luz de la naturaleza y las obras de creación y providencia manifiestan la bondad, sabiduría y poder de Dios de tal manera que dejan a los hombres sin excusa; sin embargo, no son suficientes para dar aquel conocimiento de Dios y de su voluntad que es necesario para la salvación... Las Sagradas Escrituras son la única, suficiente, cierta y infalible regla de todo conocimiento, fe y obediencia salvadores. La luz de la naturaleza y las obras de creación y providencia manifiestan la bondad, sabiduría y poder de Dios de tal manera que dejan a los hombres sin excusa; sin embargo, no son suficientes para dar aquel conocimiento de Dios y de su voluntad que es necesario para la salvación...",
-    verses: [
-      "2 Timoteo 3:15-17",
-      "Isaías 8:20",
-      "Lucas 16:29,31",
-      "Efesios 2:20",
+    title: "De las Santas Escrituras",
+    paragraphs: [
+      {
+        number: 1,
+        segments: [
+          {
+            text: "La Sagrada Escritura es la única suficiente, cierta regla, e infalible de todo conocimiento, la fe y la obediencia salvadores.",
+            referenceId: "1a",
+          },
+          {
+            text: "Aunque a la luz de la naturaleza, y las obras de la creación y la providencia hasta el momento nos ponen de manifiesto la bondad, la sabiduría y el poder de Dios, como para dejar a los hombres inexcusable,",
+            referenceId: "1b",
+          },
+          {
+            text: "sin embargo no son suficientes para dar aquel conocimiento de Dios y de su voluntad que es necesario para la salvación.",
+            referenceId: "1c",
+          },
+          {
+            text: "Por lo tanto, agradó al Señor muchas veces y de diversas maneras revelarse a sí mismo, y declaró su voluntad a su Iglesia,",
+            referenceId: "1d",
+          },
+          {
+            text: "y después, para la preservación y la propagación mejor de la verdad y para un establecimiento y consuelo más seguros de la iglesia contra la corrupción de la carne y la malicia de Satanás y el mundo, le plació poner por escrito esa revelación en su totalidad, lo que hace a las Escrituras ser más necesarias,",
+            referenceId: "1e",
+          },
+          {
+            text: "habiendo cesado los antiguos caminos en que Dios revelaba su voluntad a su pueblo.",
+            referenceId: "1f",
+          },
+        ],
+        references: [
+          {
+            id: "1a",
+            citations: [
+              {
+                citation: "2 Timoteo 3:15-17",
+                text: "Toda la Escritura es inspirada por Dios y útil para enseñar, para redargüir, para corregir, para instruir en justicia, a fin de que el hombre de Dios sea perfecto, enteramente preparado para toda buena obra.",
+              },
+              {
+                citation: "Isaías 8:20",
+                text: "¡A la ley y al testimonio! Si no dijeren conforme a esto, es porque no les ha amanecido.",
+              },
+              {
+                citation: "Lucas 16:29, 31",
+                text: "Abraham le dijo: A Moisés y a los profetas tienen; óiganlos. [...] Y Abraham le dijo: Si no oyen a Moisés y a los profetas, tampoco se persuadirán aunque alguno se levantare de los muertos.",
+              },
+              {
+                citation: "Efesios 2:20",
+                text: "edificados sobre el fundamento de los apóstoles y profetas, siendo la principal piedra del ángulo Jesucristo mismo.",
+              },
+            ],
+          },
+          {
+            id: "1b",
+            citations: [
+              {
+                citation: "Romanos 1:19-21, 32",
+                text: "porque lo que de Dios se conoce les es manifiesto, pues Dios se lo manifestó. Porque las cosas invisibles de él, su eterno poder y deidad, se hacen claramente visibles desde la creación del mundo, siendo entendidas por medio de las cosas hechas, de modo que no tienen excusa.",
+              },
+              {
+                citation: "Romanos 2:12a, 14-15",
+                text: "Porque todos los que sin ley han pecado, sin ley también perecerán [...] Porque cuando los gentiles que no tienen ley, hacen por naturaleza lo que es de la ley, éstos, aunque no tengan ley, son ley para sí mismos.",
+              },
+              {
+                citation: "Salmo 19:1-3",
+                text: "Los cielos cuentan la gloria de Dios, Y el firmamento anuncia la obra de sus manos. Un día emite palabra a otro día, Y una noche a otra noche declara sabiduría. No hay lenguaje, ni palabras, Ni es oída su voz.",
+              },
+            ],
+          },
+        ],
+      },
     ],
-  },
-  {
-    id: 2,
-    title: "De Dios y de la Santa Trinidad",
-    content:
-      "El Señor nuestro Dios es un único Dios, vivo y verdadero, cuya subsistencia está en Él mismo y procede de Él mismo, infinito en su ser y perfección, cuya esencia no puede ser comprendida por nadie sino por Él mismo; es espíritu purísimo, invisible, sin cuerpo, partes o pasiones, el único que tiene inmortalidad...",
-    verses: [
-      "1 Corintios 8:4,6",
-      "Deuteronomio 6:4",
-      "Jeremías 10:10",
-      "Isaías 48:12",
-    ],
-  },
-  {
-    id: 3,
-    title: "Del Decreto de Dios",
-    content:
-      "Dios, desde toda la eternidad, por el sapientísimo y santo consejo de su propia voluntad, ordenó libre e inalterablemente todas las cosas que suceden; sin embargo, lo hizo de tal manera que Dios ni es autor del pecado ni tiene comunión con nadie en el mismo...",
-    verses: ["Isaías 46:10", "Efesios 1:11", "Hebreos 6:17", "Romanos 9:15,18"],
-  },
-  {
-    id: 4,
-    title: "De la Creación",
-    content:
-      "En el principio le plació a Dios Padre, Hijo y Espíritu Santo, para la manifestación de la gloria de su poder, sabiduría y bondad eternas, crear o hacer de la nada, en el principio, el mundo y todas las cosas que en él hay, ya sean visibles o invisibles, en el lapso de seis días, y todas muy buenas...",
-    verses: ["Juan 1:2,3", "Hebreos 1:2", "Job 26:13", "Romanos 1:20"],
   },
 ];

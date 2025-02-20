@@ -1,19 +1,23 @@
-import { Stack } from "expo-router";
-import { useCallback } from "react";
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-import { View } from "react-native";
+import { useCallback, useEffect } from 'react';
+import { View, Image, StyleSheet, Dimensions, Text, Animated } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { Stack } from 'expo-router';
 
+// Mantener el splash screen visible
 SplashScreen.preventAutoHideAsync();
+
+const fadeAnim = new Animated.Value(0);
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
-    // Aquí puedes agregar tus fuentes si las necesitas
+    // Tus fuentes aquí
   });
 
-  const onLayoutRootView = useCallback(async () => {
+  useEffect(() => {
     if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
+      // Ocultar el splash screen después de que las fuentes estén cargadas
+      SplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
 
@@ -22,7 +26,7 @@ export default function RootLayout() {
   }
 
   return (
-    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+    <View style={styles.container}>
       <Stack
         screenOptions={{
           headerShown: false,
@@ -32,3 +36,9 @@ export default function RootLayout() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+});
