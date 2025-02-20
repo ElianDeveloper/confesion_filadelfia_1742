@@ -3,6 +3,7 @@ import { View, Image, StyleSheet, Dimensions, Text, Animated } from 'react-nativ
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { Stack } from 'expo-router';
+import { COLORS } from '@/constants/theme';
 
 // Mantener el splash screen visible
 SplashScreen.preventAutoHideAsync();
@@ -30,7 +31,7 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: "#f0f0f0" },
+          contentStyle: { backgroundColor: COLORS.background },
         }}
       />
     </View>

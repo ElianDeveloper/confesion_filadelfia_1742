@@ -14,6 +14,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import { chapters } from "../../data/chapters";
 import { Chapter, BiblicalReference } from "@/types";
 import ReferenceModal from "../../components/ReferenceModal";
+import { COLORS, SHADOWS } from "@/constants/theme";
 
 export default function ChapterDetail() {
   const { id } = useLocalSearchParams();
@@ -53,9 +54,10 @@ export default function ChapterDetail() {
         <View style={styles.contentContainer}>
           {chapter.paragraphs.map((paragraph) => (
             <View key={paragraph.number} style={styles.paragraphContainer}>
-              {paragraph.segments.map((segment, index) => (
-                <View key={index} style={styles.segmentContainer}>
-                  <Text style={styles.contentText}>
+              <Text style={styles.contentText}>
+                <Text style={styles.paragraphNumber}>{paragraph.number}. </Text>
+                {paragraph.segments.map((segment, index) => (
+                  <React.Fragment key={index}>
                     {segment.text}
                     <TouchableOpacity
                       onPress={() => {
@@ -69,9 +71,10 @@ export default function ChapterDetail() {
                         {segment.referenceId}
                       </Text>
                     </TouchableOpacity>
-                  </Text>
-                </View>
-              ))}
+                    {' '}
+                  </React.Fragment>
+                ))}
+              </Text>
             </View>
           ))}
         </View>
@@ -89,7 +92,7 @@ export default function ChapterDetail() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: COLORS.background,
   },
   header: {
     padding: 20,
@@ -99,12 +102,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#ffffff",
+    color: COLORS.text.white,
     textAlign: "center",
   },
   headerSubtitle: {
     fontSize: 16,
-    color: "#e0e0e0",
+    color: COLORS.text.light,
     marginTop: 5,
   },
   chaptersContainer: {
@@ -113,15 +116,8 @@ const styles = StyleSheet.create({
   chapterCard: {
     marginBottom: 16,
     borderRadius: 12,
-    backgroundColor: "#ffffff",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: COLORS.white,
+    ...SHADOWS.light,
     overflow: "hidden",
   },
   cardGradient: {
@@ -134,19 +130,18 @@ const styles = StyleSheet.create({
   },
   chapterNumber: {
     fontSize: 14,
-    color: "#1a237e",
+    color: COLORS.primary,
     fontWeight: "600",
   },
   chapterTitle: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#333",
+    color: COLORS.text.primary,
     marginTop: 8,
   },
-  // Estilos para la pantalla de detalle
   detailContainer: {
     flex: 1,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: COLORS.backgroundLight,
   },
   detailHeader: {
     padding: 20,
@@ -165,20 +160,20 @@ const styles = StyleSheet.create({
   },
   detailChapterNumber: {
     fontSize: 20,
-    color: '#ffffff',
+    color: COLORS.text.white,
     opacity: 0.9,
   },
   detailTitle: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: COLORS.text.white,
     textAlign: 'center',
     marginTop: 8,
     marginBottom: 16,
   },
   contentContainer: {
     padding: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.white,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     marginTop: -20,
@@ -187,26 +182,26 @@ const styles = StyleSheet.create({
   paragraphContainer: {
     marginBottom: 24,
   },
-  segmentContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginBottom: 8,
+  paragraphNumber: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: COLORS.primary,
   },
   contentText: {
     fontSize: 18,
     lineHeight: 26,
-    color: '#333',
+    color: COLORS.text.primary,
   },
   referenceText: {
-    fontSize: 14,
-    color: '#1a237e',
+    fontSize: 16,
+    color: COLORS.primary,
     textAlignVertical: 'top',
     marginLeft: 2,
     fontWeight: 'bold',
     paddingHorizontal: 2,
   },
   versesContainer: {
-    backgroundColor: "#f5f5f5",
+    backgroundColor: COLORS.gradient.card[1],
     padding: 16,
     borderRadius: 12,
     marginTop: 16,
@@ -214,12 +209,12 @@ const styles = StyleSheet.create({
   versesTitle: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#1a237e",
+    color: COLORS.primary,
     marginBottom: 12,
   },
   verseText: {
     fontSize: 14,
-    color: "#555",
+    color: COLORS.text.secondary,
     marginBottom: 8,
     lineHeight: 20,
   },

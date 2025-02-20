@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { BiblicalReference } from '@/types';
+import { COLORS } from '@/constants/theme';
 
 interface ReferenceModalProps {
   isVisible: boolean;
@@ -47,42 +48,42 @@ export default function ReferenceModal({ isVisible, onClose, reference }: Refere
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: COLORS.overlay,
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContent: {
-    backgroundColor: 'white',
+    backgroundColor: COLORS.white,
     borderRadius: 12,
     padding: 20,
     width: '90%',
     maxHeight: '80%',
   },
   citationContainer: {
-    marginBottom: 16,
+    marginBottom: 20,
   },
   citationText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#1a237e',
-    marginBottom: 8,
+    color: COLORS.primary,
+    marginBottom: 10,
   },
   biblicalText: {
-    fontSize: 14,
-    color: '#333',
+    fontSize: 16,
+    color: COLORS.text.primary,
     fontStyle: 'italic',
-    lineHeight: 20,
+    lineHeight: 24,
   },
   closeButton: {
-    marginTop: 16,
+    marginTop: 20,
     padding: 12,
-    backgroundColor: '#1a237e',
+    backgroundColor: COLORS.primary,
     borderRadius: 8,
     alignItems: 'center',
   },
   closeButtonText: {
-    color: 'white',
-    fontSize: 16,
+    color: COLORS.text.white,
+    fontSize: 18,
     fontWeight: '600',
   },
 }); 

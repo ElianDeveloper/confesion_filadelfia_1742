@@ -5,7 +5,7 @@ export interface Citation {
 
 export interface TextSegment {
   text: string;
-  referenceId: string;  // Ej: "1a", "1b", "2a", etc.
+  referenceId?: string;  // Ej: "1a", "1b", "2a", etc.
 }
 
 export interface Paragraph {
