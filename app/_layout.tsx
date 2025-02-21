@@ -1,14 +1,13 @@
 import { useCallback, useEffect } from 'react';
-import { View, Image, StyleSheet, Dimensions, Text, Animated, StatusBar } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { Stack } from 'expo-router';
 import { COLORS } from '@/constants/theme';
+import { ThemeProvider, useTheme } from '../contexts/ThemeContext';
 
 // Mantener el splash screen visible
 SplashScreen.preventAutoHideAsync();
-
-const fadeAnim = new Animated.Value(0);
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
@@ -27,16 +26,26 @@ export default function RootLayout() {
   }
 
   return (
+    <ThemeProvider>
+      <RootLayoutNav />
+    </ThemeProvider>
+  );
+}
+
+function RootLayoutNav() {
+  const { isDarkMode } = useTheme();
+  const theme = isDarkMode ? COLORS.dark : COLORS.light;
+
+  return (
     <View style={styles.container}>
       <StatusBar
-        backgroundColor={COLORS.background}
-        barStyle="light-content"
+        backgroundColor="transparent"
+        barStyle={isDarkMode ? "light-content" : "dark-content"}
         translucent={true}
       />
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: COLORS.background },
         }}
       />
     </View>
@@ -46,10 +55,5 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  header: {
-    padding: 20,
-    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 40,
-    alignItems: 'center',
   },
 });

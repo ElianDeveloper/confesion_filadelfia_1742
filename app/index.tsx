@@ -14,16 +14,30 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { chapters } from "@/data/chapters";
 import { COLORS, SHADOWS } from '@/constants/theme';
+import { useTheme } from '../contexts/ThemeContext';
 
 export default function Index() {
+  const { isDarkMode, toggleTheme } = useTheme();
+  const theme = isDarkMode ? COLORS.dark : COLORS.light;
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, { backgroundColor: theme.backgroundLight }]}>
       <LinearGradient
-        colors={COLORS.gradient.primary}
+        colors={theme.gradient.primary}
         style={styles.header}
       >
-        <Text style={styles.headerTitle}>Confesión de Fe</Text>
-        <Text style={styles.headerSubtitle}>Bautista de Filadelfia 1742</Text>
+        <TouchableOpacity 
+          onPress={toggleTheme}
+          style={styles.themeToggle}
+        >
+          <Ionicons 
+            name={isDarkMode ? "sunny" : "moon"} 
+            size={24} 
+            color={theme.text.white} 
+          />
+        </TouchableOpacity>
+        <Text style={[styles.headerTitle, { color: theme.text.white }]}>Confesión de Fe</Text>
+        <Text style={[styles.headerSubtitle, { color: theme.text.light }]}>Bautista de Filadelfia 1742</Text>
       </LinearGradient>
 
       <View style={styles.chaptersContainer}>
@@ -37,18 +51,22 @@ export default function Index() {
             })}
           >
             <LinearGradient
-              colors={COLORS.gradient.card}
+              colors={theme.gradient.card}
               style={styles.cardGradient}
             >
               <View style={styles.chapterHeader}>
-                <Text style={styles.chapterNumber}>Capítulo {chapter.id}</Text>
+                <Text style={[styles.chapterNumber, { color: theme.primary }]}>
+                  Capítulo {chapter.id}
+                </Text>
                 <MaterialIcons
                   name="arrow-forward-ios"
                   size={20}
-                  color={COLORS.primary}
+                  color={theme.primary}
                 />
               </View>
-              <Text style={styles.chapterTitle}>{chapter.title}</Text>
+              <Text style={[styles.chapterTitle, { color: theme.text.primary }]}>
+                {chapter.title}
+              </Text>
             </LinearGradient>
           </TouchableOpacity>
         ))}
@@ -60,7 +78,6 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.backgroundLight,
   },
   header: {
     padding: 20,
@@ -84,11 +101,10 @@ const styles = StyleSheet.create({
   chapterCard: {
     marginBottom: 16,
     borderRadius: 12,
-    backgroundColor: COLORS.white,
     ...SHADOWS.light,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: COLORS.primary + '20',
+    borderColor: 'rgba(99, 102, 241, 0.2)',
   },
   cardGradient: {
     padding: 16,
@@ -172,5 +188,13 @@ const styles = StyleSheet.create({
     color: COLORS.text.secondary,
     marginBottom: 8,
     lineHeight: 20,
+  },
+  themeToggle: {
+    position: 'absolute',
+    right: 20,
+    top: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 40,
+    padding: 8,
+    borderRadius: 20,
+    zIndex: 1,
   },
 });

@@ -28,16 +28,49 @@ export const COLORS = {
   
   // Colores de sombra
   shadow: '#000000',
+
+  light: {
+    primary: '#6366f1',
+    background: '#ffffff',
+    backgroundLight: '#f5f5f5',
+    text: {
+      primary: '#1f2937',
+      secondary: '#4b5563',
+      white: '#ffffff',
+      light: '#e5e7eb',
+    },
+    gradient: {
+      primary: ['#6366f1', '#4f46e5'] as const,
+      card: ['#ffffff', '#f9fafb'] as const,
+    },
+    overlay: 'rgba(0, 0, 0, 0.7)',
+  },
+  dark: {
+    primary: '#818cf8',
+    background: '#111827',
+    backgroundLight: '#1f2937',
+    text: {
+      primary: '#f3f4f6',
+      secondary: '#d1d5db',
+      white: '#ffffff',
+      light: '#9ca3af',
+    },
+    gradient: {
+      primary: ['#4f46e5', '#3730a3'] as const,
+      card: ['#1f2937', '#111827'] as const,
+    },
+    overlay: 'rgba(0, 0, 0, 0.85)',
+  },
 };
 
 export const SHADOWS = {
   light: {
-    shadowColor: COLORS.shadow,
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.1,    // Reducida para superficies claras
+    shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
   },

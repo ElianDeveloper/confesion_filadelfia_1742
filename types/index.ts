@@ -25,7 +25,3 @@ export interface Chapter {
   paragraphs: Paragraph[];
 }
 
-export interface ContentChapter {
-  text: string;
-  references: string[];
-}

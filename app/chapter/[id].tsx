@@ -16,6 +16,7 @@ import { chapters } from "../../data/chapters";
 import { Chapter, BiblicalReference } from "@/types";
 import ReferenceModal from "../../components/ReferenceModal";
 import { COLORS, SHADOWS } from "@/constants/theme";
+import { useTheme } from '../../contexts/ThemeContext';
 
 export default function ChapterDetail() {
   const { id } = useLocalSearchParams();
@@ -23,6 +24,8 @@ export default function ChapterDetail() {
   const [selectedReference, setSelectedReference] =
     useState<BiblicalReference | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const { isDarkMode } = useTheme();
+  const theme = isDarkMode ? COLORS.dark : COLORS.light;
 
   if (!chapter) return null;
 
@@ -32,34 +35,38 @@ export default function ChapterDetail() {
   };
 
   return (
-    <SafeAreaView style={styles.detailContainer}>
+    <SafeAreaView style={[styles.detailContainer, { backgroundColor: theme.backgroundLight }]}>
       <ScrollView>
         <LinearGradient
-          colors={COLORS.gradient.primary}
+          colors={theme.gradient.primary}
           style={styles.detailHeader}
         >
           <TouchableOpacity
             style={styles.backButton}
             onPress={() => router.back()}
           >
-            <Ionicons name="arrow-back" size={24} color="#fff" />
+            <Ionicons name="arrow-back" size={24} color={theme.text.white} />
           </TouchableOpacity>
           <View style={styles.detailHeaderContent}>
-            <Text style={styles.detailChapterNumber}>
+            <Text style={[styles.detailChapterNumber, { color: theme.text.white }]}>
               Capítulo {chapter.id}
             </Text>
-            <Text style={styles.detailTitle}>{chapter.title}</Text>
+            <Text style={[styles.detailTitle, { color: theme.text.white }]}>
+              {chapter.title}
+            </Text>
           </View>
         </LinearGradient>
 
-        <View style={styles.contentContainer}>
+        <View style={[styles.contentContainer, { backgroundColor: theme.backgroundLight }]}>
           {chapter.paragraphs.map((paragraph) => (
             <View key={paragraph.number} style={styles.paragraphContainer}>
-              <Text style={styles.contentText}>
-                <Text style={styles.paragraphNumber}>{paragraph.number}. </Text>
+              <Text style={[styles.contentText, { color: theme.text.primary }]}>
+                <Text style={[styles.paragraphNumber, { color: theme.primary }]}>
+                  {paragraph.number}.{" "}
+                </Text>
                 {paragraph.segments.map((segment, index) => (
                   <React.Fragment key={index}>
-                    {segment.text}
+                    <Text style={{ color: theme.text.primary }}>{segment.text}</Text>
                     <TouchableOpacity
                       onPress={() => {
                         const reference = paragraph.references.find(
@@ -68,11 +75,11 @@ export default function ChapterDetail() {
                         if (reference) handleReferencePress(reference);
                       }}
                     >
-                      <Text style={styles.referenceText}>
+                      <Text style={[styles.referenceText, { color: theme.primary }]}>
                         {segment.referenceId}
                       </Text>
                     </TouchableOpacity>
-                    {' '}
+                    {" "}
                   </React.Fragment>
                 ))}
               </Text>
@@ -142,7 +149,6 @@ const styles = StyleSheet.create({
   },
   detailContainer: {
     flex: 1,
-    backgroundColor: COLORS.background,
   },
   detailHeader: {
     padding: 20,
@@ -174,7 +180,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 20,
-    backgroundColor: COLORS.backgroundLight,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     marginTop: -20,
@@ -186,16 +191,13 @@ const styles = StyleSheet.create({
   paragraphNumber: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: COLORS.primary,
   },
   contentText: {
     fontSize: 18,
     lineHeight: 26,
-    color: COLORS.text.primary,
   },
   referenceText: {
     fontSize: 16,
-    color: COLORS.primary,
     textAlignVertical: 'top',
     marginLeft: 2,
     fontWeight: 'bold',
