@@ -5,7 +5,7 @@ export interface Citation {
 
 export interface TextSegment {
   text: string;
-  referenceId?: string;  // Ej: "1a", "1b", "2a", etc.
+  referenceId?: string; // Ej: "1a", "1b", "2a", etc.
 }
 
 export interface Paragraph {
@@ -15,7 +15,7 @@ export interface Paragraph {
 }
 
 export interface BiblicalReference {
-  id: string;          // Ej: "1a", "1b", "2a", etc.
+  id: string; // Ej: "1a", "1b", "2a", etc.
   citations: Citation[];
 }
 
@@ -25,3 +25,10 @@ export interface Chapter {
   paragraphs: Paragraph[];
 }
 
+export type Prologue = {
+  title: string;
+  subTitle: string;
+  paragraphs: {
+    text: string;
+  }[];
+};
