@@ -7,8 +7,8 @@ import { COLORS } from '@/constants/theme';
 import { ThemeProvider, useTheme } from '../contexts/ThemeContext';
 import { LinearGradient } from 'expo-linear-gradient';
 
-// Ocultar el splash screen nativo inmediatamente
-SplashScreen.hideAsync();
+// Prevenir que el splash screen nativo se oculte automáticamente
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
@@ -16,31 +16,35 @@ export default function RootLayout() {
   });
 
   const [isReady, setIsReady] = useState(false);
-  const fadeAnim = new Animated.Value(1); // Iniciamos con 1 para que sea visible inmediatamente
+  const fadeAnim = new Animated.Value(1);
 
   useEffect(() => {
     async function prepare() {
       try {
-        // Mantenemos el splash personalizado visible por un tiempo
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Animación de fade out
-        Animated.timing(fadeAnim, {
-          toValue: 0,
-          duration: 500,
-          useNativeDriver: true,
-        }).start(() => {
-          setIsReady(true);
-        });
+        // Esperar a que las fuentes se carguen
+        if (fontsLoaded) {
+          // Ocultar el splash screen nativo
+          await SplashScreen.hideAsync();
+          
+          // Mantenemos el splash personalizado visible por un tiempo
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          
+          // Animación de fade out
+          Animated.timing(fadeAnim, {
+            toValue: 0,
+            duration: 500,
+            useNativeDriver: true,
+          }).start(() => {
+            setIsReady(true);
+          });
+        }
       } catch (e) {
         console.warn(e);
       }
     }
 
-    if (fontsLoaded || fontError) {
-      prepare();
-    }
-  }, [fontsLoaded, fontError]);
+    prepare();
+  }, [fontsLoaded]);
 
   if (!fontsLoaded && !fontError) {
     return null;
