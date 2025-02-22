@@ -57,7 +57,7 @@ export default function RootLayout() {
       </ThemeProvider>
       
       {/* Splash Screen personalizado siempre visible hasta que isReady sea true */}
-      {!isReady && (
+      {/* {!isReady && (
         <Animated.View 
           style={[
             StyleSheet.absoluteFill,
@@ -84,7 +84,7 @@ export default function RootLayout() {
             </View>
           </LinearGradient>
         </Animated.View>
-      )}
+      )} */}
     </View>
   );
 }
